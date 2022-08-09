@@ -4,9 +4,9 @@ import { getUrls, postURL } from '../../apiCalls';
 import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 
-export class App extends Component {
-  constructor(props) {
-    super(props);
+class App extends Component {
+  constructor() {
+    super();
     this.state = {
       urls: []
     }
@@ -22,7 +22,8 @@ export class App extends Component {
     postURL(urlData)
     .then(getUrls()
     .then(updatedURLs => this.setState({urls: updatedURLs.urls}) )
-    .catch(error => console.error("Something went wrong posting", error)))
+    // .catch(error => console.error("Something went wrong posting", error))
+    )
   }
 
   render() {
@@ -30,7 +31,7 @@ export class App extends Component {
       <main className="App">
         <header>
           <h1>URL Shortener</h1>
-          <UrlForm />
+          <UrlForm submitURL={this.submitURL}/>
         </header>
 
         <UrlContainer urls={this.state.urls}/>

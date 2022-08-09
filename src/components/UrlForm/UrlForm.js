@@ -3,18 +3,14 @@ import React, { Component } from 'react';
 class UrlForm extends Component {
   constructor(props) {
     super(props);
-    // this.props = props;
+    this.props = props;
     this.state = {
       title: '',
       urlToShorten: '',
       submitted: false
     };
   }
-//good
-  handleNameChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-//good
+  
   handleSubmit = e => {
     e.preventDefault();
     this.setState({sumbitted: true})
@@ -22,6 +18,10 @@ class UrlForm extends Component {
       this.props.submitURL({title: this.state.title , urlToShorten: this.state.urlToShorten})
     }
     this.clearInputs();
+  }
+
+  handleNameChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   clearInputs = () => {
@@ -42,8 +42,8 @@ class UrlForm extends Component {
         <input
           type='text'
           placeholder='URL to Shorten...'
-          name='title'
-          value={this.state.title}
+          name='urlToShorten'
+          value={this.state.urlToShorten}
           onChange={e => this.handleNameChange(e)}
         />
 
