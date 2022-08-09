@@ -11,9 +11,12 @@ export class App extends Component {
       urls: []
     }
   }
-
   componentDidMount() {
-  }
+    getUrls()
+    .then(UrlData => {
+      this.setState({urls: UrlData.urls})
+    }
+  )}
 
   render() {
     return (
