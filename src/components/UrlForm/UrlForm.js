@@ -2,25 +2,30 @@ import React, { Component } from 'react';
 
 class UrlForm extends Component {
   constructor(props) {
-    super();
-    this.props = props;
+    super(props);
+    // this.props = props;
     this.state = {
       title: '',
-      urlToShorten: ''
+      urlToShorten: '',
+      submitted: false
     };
   }
-
+//good
   handleNameChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
-
+//good
   handleSubmit = e => {
     e.preventDefault();
+    this.setState({sumbitted: true})
+    if(this.state.title && this.state.urlToShorten){
+      this.props.submitURL({title: this.state.title , urlToShorten: this.state.urlToShorten})
+    }
     this.clearInputs();
   }
 
   clearInputs = () => {
-    this.setState({title: '', urlToShorten: ''});
+    this.setState({title: '', urlToShorten: '', submitted: false});
   }
 
   render() {

@@ -13,10 +13,17 @@ export class App extends Component {
   }
   componentDidMount() {
     getUrls()
-    .then(UrlData => {
-      this.setState({urls: UrlData.urls})
+    .then(urlData => {
+      this.setState({urls: urlData.urls})
     }
   )}
+
+  submitURL = (urlData) => {
+    postURL(urlData)
+    .then(getUrls()
+    .then(updatedURLs => this.setState({urls: updatedURLs.urls}) )
+    .catch(error => console.error("Something went wrong posting", error)))
+  }
 
   render() {
     return (
