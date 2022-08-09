@@ -22,7 +22,7 @@ class App extends Component {
     postURL(urlData)
     .then(getUrls()
     .then(updatedURLs => this.setState({urls: updatedURLs.urls}) )
-    // .catch(error => console.error("Something went wrong posting", error))
+    .catch(error => console.error("Something went wrong posting", error))
     )
   }
 
